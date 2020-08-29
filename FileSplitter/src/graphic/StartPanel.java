@@ -109,9 +109,10 @@ public class StartPanel extends JPanel implements ActionListener{
 			
 	
 			
-			for(int i=0;i<ThreadList.size();i++)
+			while(ThreadList.size()!=0)
 			{
 				ThreadList.getFirst().run();
+				ThreadList.removeFirst();
 				
 				filelist.removeFirst();
 				progress.setValue(progress.getValue()+1);
