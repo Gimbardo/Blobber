@@ -95,7 +95,9 @@ public class StartPanel extends JPanel implements ActionListener{
 	}
 	/**
 	 * Listener del bottone "START"
-	 * Avvia il processo di split e ricomposizione
+	 * Avvia il processo di split e ricomposizione, creando e facendo partire i thread
+	 * gli elementi vengono rimossi dalla lista nel momento in cui facciamo partire i thread, mentre
+	 * la barra di caricamento si aggiorna solo quando il thread ha finito il suo lavoro
 	 *
 	 */
 	public class StartListener implements ActionListener
@@ -103,6 +105,7 @@ public class StartPanel extends JPanel implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{
 			LinkedList<Thread> ThreadList=new LinkedList<Thread>();
+			
 			
 			for(int i=0;i<filelist.size();i++)
 				ThreadList.add(new Thread(filelist.get(i)));
@@ -115,7 +118,6 @@ public class StartPanel extends JPanel implements ActionListener{
 				ThreadList.removeFirst();
 				
 				filelist.removeFirst();
-				progress.setValue(progress.getValue()+1);
 				TabMod.fireTableDataChanged();
 			}
 		}

@@ -7,6 +7,8 @@ import java.io.IOException;
 
 import java.security.Key;
 
+import javax.swing.JProgressBar;
+
 public class CryptSplitter extends NByteSplitter{
 	
 	private byte[] key;
@@ -17,9 +19,9 @@ public class CryptSplitter extends NByteSplitter{
 	 * @param NByte Quantità di byte della divisione
 	 * @param key Chiave di cifratura
 	 */
-	public CryptSplitter(String FileLoc,int NByte,String key)
+	public CryptSplitter(String FileLoc,int NByte,String key,JProgressBar progress)
 	{
-		super(FileLoc,NByte);
+		super(FileLoc,NByte,progress);
 		this.key=key.getBytes();
 	}
 	
@@ -29,10 +31,10 @@ public class CryptSplitter extends NByteSplitter{
 	 * @param FinalName Nome del file ricomposto
 	 * @param key Chiave di cifratura
 	 */
-	public CryptSplitter(String FileLoc,String FinalName,String key)
+	public CryptSplitter(String FileLoc,String FinalName,String key,JProgressBar progress)
 	{
-		super(FileLoc,FinalName);
-		this.key=key;
+		super(FileLoc,FinalName,progress);
+		this.key=key.getBytes();
 	}
 	
 	/**
@@ -41,7 +43,7 @@ public class CryptSplitter extends NByteSplitter{
 	 */
 	public String getKey()
 	{
-		return key;
+		return key.toString();
 	}
 	
 	/**

@@ -1,4 +1,7 @@
 package splitters;
+
+import javax.swing.JProgressBar;
+
 /*
  * Classe FileLocation, padre di tutti gli splitter, che unisce
  * tutto ciò che questi hanno in comune
@@ -11,14 +14,17 @@ public class FileLocation implements Runnable{
 	
 	protected String FinalName;
 	
+	protected JProgressBar progress;
+	
 	private char TOD;
 	/**
 	 * Costruttore, in cui inserisco il path del file
 	 * @param FileLoc path
 	 */
-	public FileLocation(String FileLoc)
+	public FileLocation(String FileLoc,JProgressBar progress)
 	{
 		this.FileLoc=FileLoc;
+		this.progress=progress;
 	}
 	
 	/**
@@ -26,12 +32,13 @@ public class FileLocation implements Runnable{
 	 * ultima parte del nostro FinalName, per non dover inserire a mano l'estensione
 	 * @param FileLoc path
 	 */
-	public FileLocation(String FileLoc, String FinalName)
+	public FileLocation(String FileLoc, String FinalName,JProgressBar progress)
 	{
 		this.FileLoc=FileLoc;
 		Extension=FileLoc.substring(FileLoc.indexOf(".") + 1);
 		Extension=Extension.substring(0,Extension.indexOf("."));
 		this.FinalName=FinalName+"."+Extension;
+		this.progress=progress;
 	}
 	
 	/**
@@ -151,5 +158,7 @@ public class FileLocation implements Runnable{
 			join();
 		else
 			split();
+		
+		progress.setValue(progress.getValue()+1);
 	}
 }

@@ -185,13 +185,13 @@ public class ChoosePanel extends JPanel implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{
 			
-			FileLocation flmom = new FileLocation(fn);//oggetto FileLocation, padre di tutti gli splitter, che poi verrà definito
+			FileLocation flmom;//oggetto FileLocation, padre di tutti gli splitter, che poi verrà definito
 			
 			switch(choice) {
 			case "NByte":
 				try {
 				if(Integer.parseInt(dim.getText())>0) {
-					flmom= new NByteSplitter(fn,Integer.parseInt(dim.getText()));
+					flmom= new NByteSplitter(fn,Integer.parseInt(dim.getText()),progress);
 					flmom.setTOD('b');
 					fl.add(flmom);
 				}
@@ -210,18 +210,18 @@ public class ChoosePanel extends JPanel implements ActionListener{
 				}
 				break;
 			case "Cript":
-				flmom= new CryptSplitter(fn,Integer.parseInt(dim.getText()),key.getText());
+				flmom= new CryptSplitter(fn,Integer.parseInt(dim.getText()),key.getText(),progress);
 				flmom.setTOD('c');
 				fl.add(flmom);
 				break;
 			case "Zip":
-				flmom= new ZipSplitter(fn,Integer.parseInt(dim.getText()));
+				flmom= new ZipSplitter(fn,Integer.parseInt(dim.getText()),progress);
 				flmom.setTOD('z');
 				fl.add(flmom);
 				break;
 			case "NParti":
 				if(Integer.parseInt(parts.getText())>1){
-					flmom= new NPartsSplitter(fn,Integer.parseInt(parts.getText()));
+					flmom= new NPartsSplitter(fn,Integer.parseInt(parts.getText()),progress);
 					flmom.setTOD('n');
 					fl.add(flmom);
 				}
@@ -235,11 +235,11 @@ public class ChoosePanel extends JPanel implements ActionListener{
 				break;
 			case "Join":
 				if(fn.endsWith(".zip.par"))
-					flmom= new ZipSplitter(fn,name.getText());
+					flmom=  new ZipSplitter(fn,name.getText(),progress);
 				else if(fn.endsWith(".crypt.par"))
-					flmom= new CryptSplitter(fn,name.getText(),key.getText());
+					flmom= new CryptSplitter(fn,name.getText(),key.getText(),progress);
 				else if(fn.endsWith(".par"))
-					flmom= new NByteSplitter(fn,name.getText());
+					flmom= new NByteSplitter(fn,name.getText(),progress);
 				else {
 					JOptionPane.showMessageDialog(f,"Scegliere un file in grado di essere joinato",
 							"File Non Splittato",

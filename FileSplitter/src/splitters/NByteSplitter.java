@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import javax.swing.JProgressBar;
+
 public class NByteSplitter extends FileLocation{
 	protected int NByte;
 	
@@ -14,9 +16,9 @@ public class NByteSplitter extends FileLocation{
 	 * @param FileLoc Contiene il path del file
 	 * @param NByte Contiene la dimensione dei file risultanti dallo split
 	 */
-	public NByteSplitter(String FileLoc,int NByte)
+	public NByteSplitter(String FileLoc,int NByte, JProgressBar progress)
 	{
-		super(FileLoc);
+		super(FileLoc,progress);
 		this.NByte=NByte;
 	}
 	
@@ -25,9 +27,9 @@ public class NByteSplitter extends FileLocation{
 	 * prendiamo in input il nome del file finale
 	 * @param FileLoc path del file
 	 */
-	public NByteSplitter(String FileLoc,String FinalName)
+	public NByteSplitter(String FileLoc,String FinalName,JProgressBar progress)
 	{
-		super(FileLoc,FinalName);
+		super(FileLoc,FinalName,progress);
 		try {
 			FileInputStream fi = new FileInputStream(FileLoc);
 			NByte=fi.available();

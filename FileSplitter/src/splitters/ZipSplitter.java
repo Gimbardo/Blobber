@@ -9,15 +9,17 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
+import javax.swing.JProgressBar;
+
 public class ZipSplitter extends NByteSplitter{
 	/**
 	 * Costruttore per la creazione di uno splitter che comprime i file risultanti
 	 * @param FileLoc path del file
 	 * @param NByte Dimensione dei file divisi alla fine
 	 */
-	public ZipSplitter(String FileLoc,int NByte)
+	public ZipSplitter(String FileLoc,int NByte,JProgressBar progress)
 	{
-		super(FileLoc,NByte);
+		super(FileLoc,NByte,progress);
 	}
 	
 	/**
@@ -25,9 +27,9 @@ public class ZipSplitter extends NByteSplitter{
 	 * @param FileLoc path del file
 	 * @param FinalName Nome del file risultante dalla merge
 	 */
-	public ZipSplitter(String FileLoc,String FinalName)
+	public ZipSplitter(String FileLoc,String FinalName,JProgressBar progress)
 	{
-		super(FileLoc,FinalName);
+		super(FileLoc,FinalName,progress);
 	}
 	
 	/**
