@@ -8,6 +8,8 @@ public class StartFrame extends JFrame{
 	 * Il nome Blobber deriva dal fatto che tratta
 	 * i file come "blob", per poterli separare e riunire
 	 * come se fossero fatti di gelatina
+	 * 
+	 * @author Gamberi Elia
 	 */
 	public StartFrame()
 	{

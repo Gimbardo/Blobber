@@ -1,17 +1,13 @@
 package graphic;
 
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.util.LinkedList;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import splitters.FileLocation;
-
+/**
+ * Classe che implementa il Frame in cui effettuiamo la
+ * scelta del tipo di divisione di un file specifico
+ * @author Gamberi Elia
+ *
+ */
 public class ChooseFrame extends JFrame{
-	
-	private ChoosePanel j;
 	
 	/**
 	 * Frame per quando scegliamo che tipo di divisione/join vogliamo eseguire
@@ -24,9 +20,5 @@ public class ChooseFrame extends JFrame{
 		super("Choose");
 		setBounds(450,200,400,200);
 		setResizable(false);
-	}
-	
-	public void addPanelReference(ChoosePanel j) {
-		this.j=j;
 	}
 }

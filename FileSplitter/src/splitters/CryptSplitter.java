@@ -9,6 +9,14 @@ import java.security.Key;
 
 import javax.swing.JProgressBar;
 
+/**
+ * Classe che implementa un File Splitter Criptato, che quindi necessita di una chiave
+ * libera in fase di split e specifica in fase di join
+ * Il tipo di chiave è una stringa, che per comodità convertiamo in un arrray di byte
+ * 
+ * @author Gamberi Elia
+ *
+ */
 public class CryptSplitter extends NByteSplitter implements SplitterInterface{
 	
 	private byte[] key;

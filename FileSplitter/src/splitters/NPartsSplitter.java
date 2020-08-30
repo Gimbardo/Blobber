@@ -1,7 +1,6 @@
 package splitters;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -11,7 +10,8 @@ import javax.swing.JProgressBar;
  * splittare un file dato il numero di file finali
  * Il motivo per questa eredità è per mantenere la funzione join di NByteSplitter, che sarebbe stata
  * identica a quella di di questa classe
- * @author gambero
+ * 
+ * @author Gamberi Elia
  *
  */
 public class NPartsSplitter extends NByteSplitter implements SplitterInterface{

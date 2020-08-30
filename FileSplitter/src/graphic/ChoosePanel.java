@@ -11,6 +11,14 @@ import javax.swing.*;
 
 import splitters.*;
 
+/**
+ * Pannello della scelta del tipo di divisione di un file specifico
+ * Contiene i bottoni per scegliere il tipo di divisione, e delle JTextField
+ * in cui inserire le specifiche di divisione, oltre al bottone ADD
+ * 
+ * @author Gamberi Elia
+ *
+ */
 public class ChoosePanel extends JPanel implements ActionListener{
 	
 	private String choice;

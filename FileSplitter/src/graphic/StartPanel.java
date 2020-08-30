@@ -1,19 +1,21 @@
 package graphic;
 
 
-import java.awt.BorderLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
 import javax.swing.*;
-import javax.swing.event.ChangeListener;
-
 import splitters.FileLocation;
 
+/**
+ * Classe che implementa il pannello iniziale del Blobber,
+ * contenente una tabella per visualizzare tutti i file inseriti e
+ * 3 bottoni: ADD, REMOVE e START
+ * 
+ * @author Gamberi Elia
+ *
+ */
 public class StartPanel extends JPanel implements ActionListener{
 	
 	/**
@@ -87,7 +89,6 @@ public class StartPanel extends JPanel implements ActionListener{
 			ChooseFrame f=new ChooseFrame();
 		
 			ChoosePanel cp=new ChoosePanel(filelist,f,TabMod,fn,progress);
-			f.addPanelReference(cp);
 			f.add(cp);
 			f.setVisible(true);
 			}

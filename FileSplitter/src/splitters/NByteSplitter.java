@@ -8,6 +8,15 @@ import java.io.IOException;
 
 import javax.swing.JProgressBar;
 
+/**
+ * Oggetto che implementa uno splitter che divide un file in pezzi da NByte, e li ricompone
+ * sequenzialmente in base al nome
+ * 
+ * Come input della join possiamo avere uno qualunque dei primi 9 file splittati
+ * 
+ * @author Gamberi Elia
+ *
+ */
 public class NByteSplitter extends FileLocation implements SplitterInterface{
 	protected int NByte;
 	

@@ -6,6 +6,13 @@ import javax.swing.table.DefaultTableModel;
 
 import splitters.FileLocation;
 
+/**
+ * Modello della Tabella dentro alla prima finestra del Blobber,
+ * contenente la lista di oggetti figli di FileLocation, e le loro informazioni
+ * 
+ * @author Gamberi Elia
+ *
+ */
 public class FileTabMod extends DefaultTableModel{
 	
 	LinkedList<FileLocation> l;

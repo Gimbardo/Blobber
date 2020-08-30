@@ -11,6 +11,14 @@ import java.util.zip.ZipOutputStream;
 
 import javax.swing.JProgressBar;
 
+/**
+ * Classe che, estendendo NByteSplitter, implementa uno splitter in grado di
+ * comprimere i file risultanti dalla divisione, e decomprimerli al momento
+ * della ricomposizione
+ * 
+ * @author Gamberi Elia
+ *
+ */
 public class ZipSplitter extends NByteSplitter implements SplitterInterface{
 	/**
 	 * Costruttore per la creazione di uno splitter che comprime i file risultanti

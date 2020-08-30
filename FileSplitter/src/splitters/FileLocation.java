@@ -6,9 +6,11 @@ import java.io.FileOutputStream;
 
 import javax.swing.JProgressBar;
 
-/*
+/**
  * Classe FileLocation, padre di tutti gli splitter, che unisce
  * tutto ciò che questi hanno in comune
+ * 
+ * @author Gamberi Elia
  */
 public class FileLocation implements Runnable, SplitterInterface{
 	
