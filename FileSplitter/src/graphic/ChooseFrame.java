@@ -24,7 +24,6 @@ public class ChooseFrame extends JFrame{
 		super("Choose");
 		setBounds(450,200,400,200);
 		setResizable(false);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
 	public void addPanelReference(ChoosePanel j) {
