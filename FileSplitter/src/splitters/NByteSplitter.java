@@ -8,13 +8,14 @@ import java.io.IOException;
 
 import javax.swing.JProgressBar;
 
-public class NByteSplitter extends FileLocation{
+public class NByteSplitter extends FileLocation implements SplitterInterface{
 	protected int NByte;
 	
 	/**
 	 * Costruttore per lo splitter
 	 * @param FileLoc Contiene il path del file
 	 * @param NByte Contiene la dimensione dei file risultanti dallo split
+	 * @param progress JProgressBar, per incrementarla una volta finito il lavoro del thread
 	 */
 	public NByteSplitter(String FileLoc,int NByte, JProgressBar progress)
 	{
@@ -26,6 +27,7 @@ public class NByteSplitter extends FileLocation{
 	 * Costruttore soprattutto per il join, in cui calcoliamo la dimensione del file e
 	 * prendiamo in input il nome del file finale
 	 * @param FileLoc path del file
+	 * @param progress JProgressBar, per incrementarla una volta finito il lavoro del thread
 	 */
 	public NByteSplitter(String FileLoc,String FinalName,JProgressBar progress)
 	{
@@ -40,7 +42,8 @@ public class NByteSplitter extends FileLocation{
 	}
 	
 	/**
-	 * Metodo che ritorna la quantità di byte di grandezza dei file risultanti dallo split
+	 * Metodo che ritorna la quantità di byte di grandezza dei file risultanti dallo split, o
+	 * la grandezza del file che abbiamo preso per il join
 	 * @return N Byte
 	 */
 	public int getNByte()
@@ -66,14 +69,13 @@ public class NByteSplitter extends FileLocation{
 	{
 		int n=1;
 		
-		FileOutputStream fo;
-		FileInputStream fi;
+		
 		try {
-			fi = new FileInputStream(FileLoc);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return;
-		}
+			newfi();
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+			}
 		
 		
 		byte[] moment=new byte[NByte];
@@ -102,17 +104,13 @@ public class NByteSplitter extends FileLocation{
 	public void join()
 	{
 		int dim;
-		FileOutputStream fo;
-		FileInputStream fi;
-		
 		
 		try {
-			fo = new FileOutputStream(getFolder()+"/"+getFinalName());
-		} catch (FileNotFoundException e) {
+		newfo();
+		}catch(Exception e)
+		{
 			e.printStackTrace();
-			return;
 		}
-		
 		for(int i=1;new File(getFolder()+"/"+i+getName().substring(1)).isFile();i++)
 		{
 			try {
@@ -150,5 +148,4 @@ public class NByteSplitter extends FileLocation{
 			e.printStackTrace();
 		}
 	}
-		
 }

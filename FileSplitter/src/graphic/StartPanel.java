@@ -40,8 +40,7 @@ public class StartPanel extends JPanel implements ActionListener{
 		
 		this.f=f;
 		
-		String[] colName= {"Processo","File"};
-		TabMod=new FileTabMod(colName,filelist,0);
+		TabMod=new FileTabMod(filelist);
 		
 		tab=new JTable(TabMod);
 		tab.setSize(400,400);
@@ -85,7 +84,7 @@ public class StartPanel extends JPanel implements ActionListener{
 			fn=""+fileChooser.getSelectedFile();}
 		
 		if(fn!="") {
-			ChooseFrame f=new ChooseFrame(filelist);
+			ChooseFrame f=new ChooseFrame();
 		
 			ChoosePanel cp=new ChoosePanel(filelist,f,TabMod,fn,progress);
 			f.addPanelReference(cp);

@@ -26,13 +26,20 @@ public class ChoosePanel extends JPanel implements ActionListener{
 	 */
 	private boolean closeWithButton;
 	
-	JTextField dim= new JTextField();
-	JTextField parts= new JTextField();
-	JTextField key= new JTextField();
-	JTextField name = new JTextField();
+	private JTextField dim= new JTextField();
+	private JTextField parts= new JTextField();
+	private JTextField key= new JTextField();
+	private JTextField name = new JTextField();
 	
-	JProgressBar progress;
-	
+	private JProgressBar progress;
+	/**
+	 * Costruttore iniziale del pannello di scelta del tipo di divisione
+	 * @param l lista di oggetti "FileLocation", che diventano uno dei figli in base alle nostre scelte
+	 * @param f Frame in cui è contenuto il JPanel
+	 * @param TabMod Modello della Tabella contenuto nel Frame iniziale
+	 * @param fn Stringa contenente il path del file che abbiamo appena scelto
+	 * @param progress JprogressBar, da passare agli splitter per aggiornarla alla fine della funzione run()
+	 */
 	public ChoosePanel(LinkedList<FileLocation> l,JFrame f,FileTabMod TabMod, String fn,JProgressBar progress) {
 		
 		setLayout(new GridBagLayout());

@@ -14,7 +14,7 @@ import javax.swing.JProgressBar;
  * @author gambero
  *
  */
-public class NPartsSplitter extends NByteSplitter{
+public class NPartsSplitter extends NByteSplitter implements SplitterInterface{
 	
 	private int NParts;
 	
@@ -22,6 +22,7 @@ public class NPartsSplitter extends NByteSplitter{
 	 * Costruttore che crea uno splitter
 	 * @param FileLoc path del file
 	 * @param NParts numero di parti per la divisione
+	 * @param progress JProgressBar, per incrementarla una volta finito il lavoro del thread
 	 */
 	public NPartsSplitter(String FileLoc,int NParts,JProgressBar progress)
 	{
@@ -56,6 +57,7 @@ public class NPartsSplitter extends NByteSplitter{
 	 * ma ho preferito lasciarlo per completezza
 	 * @param FileLoc path del file
 	 * @param FinalName nome del file ricomposto
+	 * @param progress JProgressBar, per incrementarla una volta finito il lavoro del thread
 	 */
 	public NPartsSplitter(String FileLoc,String FinalName,JProgressBar progress)
 	{
@@ -87,14 +89,12 @@ public class NPartsSplitter extends NByteSplitter{
 	 */
 	public void split()
 	{
-		FileOutputStream fo;
-		FileInputStream fi;
 		try {
-			fi = new FileInputStream(FileLoc);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return;
-		}
+			newfi();
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+			}
 		
 		
 		byte[] moment=new byte[NByte];

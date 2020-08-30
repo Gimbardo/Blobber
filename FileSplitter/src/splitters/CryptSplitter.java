@@ -9,7 +9,7 @@ import java.security.Key;
 
 import javax.swing.JProgressBar;
 
-public class CryptSplitter extends NByteSplitter{
+public class CryptSplitter extends NByteSplitter implements SplitterInterface{
 	
 	private byte[] key;
 	
@@ -18,6 +18,7 @@ public class CryptSplitter extends NByteSplitter{
 	 * @param FileLoc Path del file
 	 * @param NByte Quantità di byte della divisione
 	 * @param key Chiave di cifratura
+	 * @param progress JProgressBar, per incrementarla una volta finito il lavoro del thread
 	 */
 	public CryptSplitter(String FileLoc,int NByte,String key,JProgressBar progress)
 	{
@@ -30,6 +31,7 @@ public class CryptSplitter extends NByteSplitter{
 	 * @param FileLoc Path del file
 	 * @param FinalName Nome del file ricomposto
 	 * @param key Chiave di cifratura
+	 * @param progress JProgressBar, per incrementarla una volta finito il lavoro del thread
 	 */
 	public CryptSplitter(String FileLoc,String FinalName,String key,JProgressBar progress)
 	{

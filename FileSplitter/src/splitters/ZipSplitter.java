@@ -11,11 +11,12 @@ import java.util.zip.ZipOutputStream;
 
 import javax.swing.JProgressBar;
 
-public class ZipSplitter extends NByteSplitter{
+public class ZipSplitter extends NByteSplitter implements SplitterInterface{
 	/**
 	 * Costruttore per la creazione di uno splitter che comprime i file risultanti
 	 * @param FileLoc path del file
 	 * @param NByte Dimensione dei file divisi alla fine
+	 * @param progress JProgressBar, per incrementarla una volta finito il lavoro del thread
 	 */
 	public ZipSplitter(String FileLoc,int NByte,JProgressBar progress)
 	{
@@ -26,6 +27,7 @@ public class ZipSplitter extends NByteSplitter{
 	 * Costruttore per la join
 	 * @param FileLoc path del file
 	 * @param FinalName Nome del file risultante dalla merge
+	 * @param progress JProgressBar, per incrementarla una volta finito il lavoro del thread
 	 */
 	public ZipSplitter(String FileLoc,String FinalName,JProgressBar progress)
 	{
@@ -41,14 +43,12 @@ public class ZipSplitter extends NByteSplitter{
 		int n=1;
 		
 		ZipOutputStream foz;
-		FileInputStream fi;
-		
 		try {
-			fi = new FileInputStream(FileLoc);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return;
-		}
+			newfi();
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+			}
 		
 		
 		byte[] moment=new byte[NByte];
@@ -85,16 +85,15 @@ public class ZipSplitter extends NByteSplitter{
 	public void join()
 	{
 		int dim;
-		FileOutputStream fo;
+		
 		ZipInputStream fiz;
 		
-		
 		try {
-			fo = new FileOutputStream(getFolder()+"/"+getFinalName());
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return;
-		}
+			newfo();
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+			}
 		
 		for(int i=1;new File(getFolder()+"/"+i+getName().substring(1)).isFile();i++)
 		{
