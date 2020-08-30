@@ -1,5 +1,6 @@
 package splitters;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -14,12 +15,20 @@ import javax.swing.JProgressBar;
  */
 public class FileLocation implements Runnable, SplitterInterface{
 	
-	/*
-	 * Stringhe utili per gestire file input e fileoutput
+	/**
+	 * Stringa che contiene l'estensione del file
 	 */
 	protected String Extension;
-	protected String FileLoc;
-	protected String FinalName;
+	
+	/**
+	 * File che contiene il File da splittare/joinare
+	 */
+	protected File FileLoc;
+	
+	/**
+	 * File che contiene il nome del file dopo l'operazione di join
+	 */
+	protected File FinalName;
 	
 	/*
 	 * ProgressBar, passata per essere aggiornata nel metodo run
@@ -43,7 +52,7 @@ public class FileLocation implements Runnable, SplitterInterface{
 	 */
 	public FileLocation(String FileLoc,JProgressBar progress)
 	{
-		this.FileLoc=FileLoc;
+		this.FileLoc = new File(FileLoc);
 		this.progress=progress;
 	}
 	
@@ -54,10 +63,12 @@ public class FileLocation implements Runnable, SplitterInterface{
 	 */
 	public FileLocation(String FileLoc, String FinalName,JProgressBar progress)
 	{
-		this.FileLoc=FileLoc;
-		Extension=FileLoc.substring(FileLoc.indexOf(".") + 1);
+		this.FileLoc= new File(FileLoc);
+		
+		Extension= FileLoc.substring(FileLoc.indexOf(".") + 1);
 		Extension=Extension.substring(0,Extension.indexOf("."));
-		this.FinalName=FinalName+"."+Extension;
+		this.FinalName=new File(FinalName+"."+Extension);
+		
 		this.progress=progress;
 	}
 	
@@ -67,7 +78,7 @@ public class FileLocation implements Runnable, SplitterInterface{
 	 */
 	public String getFileLocation()
 	{
-		return FileLoc;
+		return FileLoc.getPath();
 	}
 	
 	/**
@@ -76,9 +87,8 @@ public class FileLocation implements Runnable, SplitterInterface{
 	 */
 	public String getFinalFileNameNoExtension()
 	{
-		int i = FinalName.lastIndexOf("/");
-		int j = FinalName.indexOf(".");
-		return FinalName.substring(i+1,j);
+		int j = FinalName.getName().indexOf(".");
+		return FinalName.getName().substring(0,j);
 	}
 	
 	
@@ -89,8 +99,7 @@ public class FileLocation implements Runnable, SplitterInterface{
 	
 	public String getName()
 	{
-		int i = FileLoc.lastIndexOf("/");
-		return FileLoc.substring(i+1);
+		return FileLoc.getName();
 	}
 	
 	/**
@@ -99,7 +108,7 @@ public class FileLocation implements Runnable, SplitterInterface{
 	 */
 	public String getFinalName()
 	{
-		return FinalName;
+		return FinalName.getName();
 	}
 	
 	/**
@@ -108,8 +117,7 @@ public class FileLocation implements Runnable, SplitterInterface{
 	 */
 	public String getFolder()
 	{
-		int i = FileLoc.lastIndexOf("/");
-		return FileLoc.substring(0, i);
+		return FileLoc.getParent();
 	}
 	
 	
@@ -150,7 +158,7 @@ public class FileLocation implements Runnable, SplitterInterface{
 	 */
 	public boolean isSplit()
 	{
-		if(FileLoc.endsWith(".par"))
+		if(FileLoc.getName().endsWith(".par"))
 			return false;
 		return true;
 	}
