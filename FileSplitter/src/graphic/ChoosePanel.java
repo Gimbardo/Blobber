@@ -2,9 +2,14 @@ package graphic;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.LinkedList;
 
 import javax.swing.*;
@@ -204,30 +209,22 @@ public class ChoosePanel extends JPanel implements ActionListener{
 			
 			switch(choice) {
 			case "NByte":
-				try {
-				if(Integer.parseInt(dim.getText())>0) {
+				if(isDimOk()) {
 					flmom= new NByteSplitter(fn,Integer.parseInt(dim.getText()),progress);
 					flmom.setTOD('b');
 					fl.add(flmom);
 				}
 				else
-				{
-					JOptionPane.showMessageDialog(f,"Scegliere una dimensione maggiore di 0",
-							"Numero di Byte negativo",
-						    JOptionPane.ERROR_MESSAGE);
 					return;
-				}
-				}catch(NumberFormatException n) {
-					JOptionPane.showMessageDialog(f,"Scegliere una dimensione valida",
-							"Numero di Byte non valido",
-						    JOptionPane.ERROR_MESSAGE);
-					return;
-				}
 				break;
 			case "Cript":
-				flmom= new CryptSplitter(fn,Integer.parseInt(dim.getText()),key.getText(),progress);
-				flmom.setTOD('c');
-				fl.add(flmom);
+				if(isDimOk()) {
+					flmom= new CryptSplitter(fn,Integer.parseInt(dim.getText()),key.getText(),progress);
+					flmom.setTOD('c');
+					fl.add(flmom);
+				}
+				else
+					return;
 				break;
 			case "Zip":
 				flmom= new ZipSplitter(fn,Integer.parseInt(dim.getText()),progress);
@@ -235,20 +232,28 @@ public class ChoosePanel extends JPanel implements ActionListener{
 				fl.add(flmom);
 				break;
 			case "NParti":
-				if(Integer.parseInt(parts.getText())>1){
-					flmom= new NPartsSplitter(fn,Integer.parseInt(parts.getText()),progress);
-					flmom.setTOD('n');
-					fl.add(flmom);
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(f,"Scegliere una quantitÃ  di parti maggiore di 1",
+				try {
+					if(Integer.parseInt(parts.getText())>1){
+						flmom= new NPartsSplitter(fn,Integer.parseInt(parts.getText()),progress);
+						flmom.setTOD('n');
+						fl.add(flmom);
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(f,"Scegliere una quantita'  di parti maggiore di 1",
 							"Numero di parti non valido",
 						    JOptionPane.ERROR_MESSAGE);
+						return;
+					}}
+				catch(NumberFormatException n) {
+					JOptionPane.showMessageDialog(f,"Scegliere un numero di parti valido",
+						"Numero di parti non valido",
+					    JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				break;
 			case "Join":
+				try {
 				if(fn.endsWith(".zip.par"))
 					flmom=  new ZipSplitter(fn,name.getText(),progress);
 				else if(fn.endsWith(".crypt.par"))
@@ -261,7 +266,14 @@ public class ChoosePanel extends JPanel implements ActionListener{
 						    JOptionPane.ERROR_MESSAGE);
 					return;
 					}
-				
+				}
+				catch(NullPointerException npe)
+				{
+					JOptionPane.showMessageDialog(f,"Inserire un nome per il file risultante",
+							"Nome non Inserito",
+						    JOptionPane.WARNING_MESSAGE);
+					return;
+				}
 				
 				if(flmom.getFinalFileNameNoExtension().equals(""))
 				{
@@ -284,5 +296,56 @@ public class ChoosePanel extends JPanel implements ActionListener{
 			WindowEvent close = new WindowEvent(f, WindowEvent.WINDOW_CLOSING);
 			f.dispatchEvent(close);
 		}
+		
+		/**
+		 * Insieme di controlli effettuati prima di creare uno splitter basato sulla dimensione del file finale
+		 */
+		private boolean isDimOk()
+		{
+			FileInputStream fi = null;
+			try {
+				fi = new FileInputStream(fn);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			try {
+				if(Integer.parseInt(dim.getText())<=0)
+				{
+					JOptionPane.showMessageDialog(f,"Scegliere una dimensione maggiore di 0",
+						"Numero di Byte negativo",
+						JOptionPane.ERROR_MESSAGE);
+					return false;
+				}
+				try {
+					if(Integer.parseInt(dim.getText()) > fi.available())
+					{
+						JOptionPane.showMessageDialog(f,"Scegliere una dimensione minore della dimensione del file",
+							"Numero di Byte inserito troppo grande",
+							JOptionPane.ERROR_MESSAGE);
+					return false;
+					}
+				}catch(IOException e)
+				{
+					JOptionPane.showMessageDialog(f,"File Rimosso o non piu' disponibile",
+							"File Rimosso",
+							JOptionPane.ERROR_MESSAGE);
+					return false;
+				}
+			}catch(NumberFormatException n) {
+				JOptionPane.showMessageDialog(f,"Scegliere una dimensione valida",
+						"Numero di Byte non valido",
+					    JOptionPane.ERROR_MESSAGE);
+				return false;
+			}
+			try {
+				fi.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return true;
+		}
+		
+		
+		
 	}
 }

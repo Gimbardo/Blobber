@@ -12,8 +12,6 @@ public class ChooseFrame extends JFrame{
 	/**
 	 * Frame per quando scegliamo che tipo di divisione/join vogliamo eseguire
 	 * 
-	 * @param l lista dei file, per poterne rimuovere uno
-	 * in caso di chiusura forzata
 	 */
 	public ChooseFrame()
 	{

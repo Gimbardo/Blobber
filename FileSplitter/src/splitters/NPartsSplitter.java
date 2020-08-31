@@ -8,7 +8,7 @@ import javax.swing.JProgressBar;
 /**
  * Classe che espande NByteSplitter, e non FileLocation, per consentire di
  * splittare un file dato il numero di file finali
- * Il motivo per questa eredità è per mantenere la funzione join di NByteSplitter, che sarebbe stata
+ * Il motivo per questa eredita'� e' per mantenere la funzione join di NByteSplitter, che sarebbe stata
  * identica a quella di di questa classe
  * 
  * @author Gamberi Elia
@@ -33,7 +33,7 @@ public class NPartsSplitter extends NByteSplitter implements SplitterInterface{
 		 * ci saremmo trovati con un numero di parti non uguale a quello richiesto
 		 * Una soluzione utilizzando comunque NByteSplitter ci sarebbe stata, ma avrebbe inutilmente complicato il progetto,
 		 * necessitando una modifica al sistema di split di NByteSplitter
-		 * Ho comunque mantenuto NByte in quanto ci è utile nella funzione split*/
+		 * */
 		try {
 		FileInputStream fi = new FileInputStream(FileLoc);
 		
@@ -84,7 +84,7 @@ public class NPartsSplitter extends NByteSplitter implements SplitterInterface{
 	
 	/**
 	 * split ispirato a NByteSplitter, ma diverso in quando deve contare il numero di elementi che crea.
-	 * In particolare conta il numero di byte per arrivare a nparti-1, e poi crea l'ultimo file, più pesante
+	 * In particolare conta il numero di byte per arrivare a nparti-1, e poi crea l'ultimo file, piu' pesante
 	 * degli altri nella maggior parte dei casi
 	 */
 	public void split()

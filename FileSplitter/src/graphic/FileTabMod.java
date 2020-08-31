@@ -24,9 +24,7 @@ public class FileTabMod extends DefaultTableModel{
 	
 	/**
 	 * Costruttore del nostro Table Model
-	 * @param e 
 	 * @param l Lista dei File
-	 * @param row_count Numero di colonne
 	 */
 	public FileTabMod(LinkedList<FileLocation> l) {
 		super();
@@ -57,8 +55,10 @@ public class FileTabMod extends DefaultTableModel{
     }
 	
 	/**
-	 * Il nome di ogni riga è il suo numero di riga stesso,
+	 * Il nome di ogni riga e' il suo numero di riga stesso,
 	 * e questa funzione ritorna questo valore come stringa
+	 * @param row riga da analizzare
+	 * @return il numero di riga della riga richiesta
 	 */
 	public String getRowName(int row) {
 		return String.valueOf(row+1);

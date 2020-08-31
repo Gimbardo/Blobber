@@ -12,7 +12,7 @@ import javax.swing.JProgressBar;
 /**
  * Classe che implementa un File Splitter Criptato, che quindi necessita di una chiave
  * libera in fase di split e specifica in fase di join
- * Il tipo di chiave è una stringa, che per comodità convertiamo in un arrray di byte
+ * Il tipo di chiave e' una stringa, che per comodita'� convertiamo in un arrray di byte
  * 
  * @author Gamberi Elia
  *
@@ -24,7 +24,7 @@ public class CryptSplitter extends NByteSplitter implements SplitterInterface{
 	/**
 	 * Costruttore utilizzato per lo splitter
 	 * @param FileLoc Path del file
-	 * @param NByte Quantità di byte della divisione
+	 * @param NByte Quantita' di byte della divisione
 	 * @param key Chiave di cifratura
 	 * @param progress JProgressBar, per incrementarla una volta finito il lavoro del thread
 	 */
@@ -91,7 +91,7 @@ public class CryptSplitter extends NByteSplitter implements SplitterInterface{
 			int nByteMom = fi.read(moment,0,NByte);
 			while(nByteMom >= 0)
 			{
-				fo = new FileOutputStream(getFolder()+"/"+n+getName()+".par"); //salvo tutti i file in una cartella col nome del padre, in ordine di divsione
+				fo = new FileOutputStream(getFolder()+"/"+n+getName()+".par"); 
 				fo.write(moment,0,nByteMom);
 				n++;
 				fo.close();

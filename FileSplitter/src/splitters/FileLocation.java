@@ -9,7 +9,7 @@ import javax.swing.JProgressBar;
 
 /**
  * Classe FileLocation, padre di tutti gli splitter, che unisce
- * tutto ciò che questi hanno in comune
+ * tutto cio' che questi hanno in comune
  * 
  * @author Gamberi Elia
  */
@@ -30,12 +30,12 @@ public class FileLocation implements Runnable, SplitterInterface{
 	 */
 	protected File FinalName;
 	
-	/*
+	/**
 	 * ProgressBar, passata per essere aggiornata nel metodo run
 	 */
 	protected JProgressBar progress;
 	
-	/*
+	/**
 	 * FileInputStream e FileOutputStream
 	 */
 	protected FileInputStream fi;
@@ -49,6 +49,7 @@ public class FileLocation implements Runnable, SplitterInterface{
 	/**
 	 * Costruttore, in cui inserisco il path del file
 	 * @param FileLoc path
+	 * @param progress ProgressBar, aggiornata col metodo run
 	 */
 	public FileLocation(String FileLoc,JProgressBar progress)
 	{
@@ -60,6 +61,8 @@ public class FileLocation implements Runnable, SplitterInterface{
 	 * Costruttore, in cui inserisco anche il nome finale, usato nello join, e imposto l'estensione del file come
 	 * ultima parte del nostro FinalName, per non dover inserire a mano l'estensione
 	 * @param FileLoc path
+	 * @param FinalName nome del file risultante dalla join
+	 * @param progress ProgressBar, aggiornata col metodo run
 	 */
 	public FileLocation(String FileLoc, String FinalName,JProgressBar progress)
 	{
@@ -83,7 +86,7 @@ public class FileLocation implements Runnable, SplitterInterface{
 	
 	/**
 	 * Ritorna il nome del file senza estensione, per controllare che non sia vuoto
-	 * 
+	 * @return Nome dell'output senza estensione
 	 */
 	public String getFinalFileNameNoExtension()
 	{
@@ -124,7 +127,7 @@ public class FileLocation implements Runnable, SplitterInterface{
 	/**
 	 * TOD : Type of Divisione
 	 * possibili opzioni: 'b','c','z','n' o 'j'
-	 * @return
+	 * @return TOD
 	 */
 	public char getTOD()
 	{
@@ -153,8 +156,8 @@ public class FileLocation implements Runnable, SplitterInterface{
 	
 	
 	/**
-	 * Ritorna vero se il file è da splittare, falso se è da dividere
-	 * @return
+	 * Ritorna vero se il file e' da splittare, falso se e' da unire
+	 * @return true se split, false se join
 	 */
 	public boolean isSplit()
 	{

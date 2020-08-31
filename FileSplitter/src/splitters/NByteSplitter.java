@@ -36,6 +36,7 @@ public class NByteSplitter extends FileLocation implements SplitterInterface{
 	 * Costruttore soprattutto per il join, in cui calcoliamo la dimensione del file e
 	 * prendiamo in input il nome del file finale
 	 * @param FileLoc path del file
+	 * @param FinalName Nome del file risultante dalla join
 	 * @param progress JProgressBar, per incrementarla una volta finito il lavoro del thread
 	 */
 	public NByteSplitter(String FileLoc,String FinalName,JProgressBar progress)
@@ -51,7 +52,7 @@ public class NByteSplitter extends FileLocation implements SplitterInterface{
 	}
 	
 	/**
-	 * Metodo che ritorna la quantità di byte di grandezza dei file risultanti dallo split, o
+	 * Metodo che ritorna la quantita'� di byte di grandezza dei file risultanti dallo split, o
 	 * la grandezza del file che abbiamo preso per il join
 	 * @return N Byte
 	 */
@@ -108,7 +109,7 @@ public class NByteSplitter extends FileLocation implements SplitterInterface{
 	}
 	/**
 	 * Metodo che effettua il join tra i vari pezzi splittati in precedenza da un NByteSplitter
-	 * Utilizzabile su uno qualunque dei file splittati: non è necessario utilizzarlo sul primo
+	 * Utilizzabile su uno qualunque dei file splittati: non e' necessario utilizzarlo sul primo
 	 */
 	public void join()
 	{
