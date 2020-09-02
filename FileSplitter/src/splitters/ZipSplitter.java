@@ -62,6 +62,7 @@ public class ZipSplitter extends NByteSplitter implements SplitterInterface{
 		
 		byte[] moment=new byte[NByte];
 		
+		
 		try {
 			int nByteMom = fi.read(moment,0,NByte);
 			while(nByteMom >= 0)
@@ -70,6 +71,8 @@ public class ZipSplitter extends NByteSplitter implements SplitterInterface{
 				String FileRis= getFolder()+"/"+n+getName()+".zip.par";
 				
 				foz = new ZipOutputStream(new FileOutputStream(FileRis)); //salvo tutti i file in una cartella col nome del padre, in ordine di divsione
+				
+				foz.setLevel(9);
 				
 				foz.putNextEntry(new ZipEntry(FileRis));
 				
@@ -115,7 +118,6 @@ public class ZipSplitter extends NByteSplitter implements SplitterInterface{
 				e.printStackTrace();
 				return;
 			}
-			
 			
 			
 			try
