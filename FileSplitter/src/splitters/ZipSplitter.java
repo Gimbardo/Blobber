@@ -42,6 +42,9 @@ public class ZipSplitter extends NByteSplitter implements SplitterInterface{
 		super(FileLoc,FinalName,progress);
 	}
 	
+	
+	private static int ZipLevel = 9;
+	
 	/**
 	 *  Metodo che splitta il file memorizzato dentro FileLoc
 	 *  in pezzi da NByte
@@ -72,7 +75,7 @@ public class ZipSplitter extends NByteSplitter implements SplitterInterface{
 				
 				foz = new ZipOutputStream(new FileOutputStream(FileRis)); //salvo tutti i file in una cartella col nome del padre, in ordine di divsione
 				
-				foz.setLevel(9);
+				foz.setLevel(ZipLevel);
 				
 				foz.putNextEntry(new ZipEntry(FileRis));
 				
