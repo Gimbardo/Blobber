@@ -56,6 +56,7 @@ public class ZipSplitter extends NByteSplitter implements SplitterInterface{
 			}catch(Exception e)
 			{
 				e.printStackTrace();
+				return;
 			}
 		
 		
@@ -82,6 +83,7 @@ public class ZipSplitter extends NByteSplitter implements SplitterInterface{
 		}
 		catch (IOException e){
 			e.printStackTrace();
+			return;
 		}
 		return;
 	}
@@ -101,6 +103,7 @@ public class ZipSplitter extends NByteSplitter implements SplitterInterface{
 			}catch(Exception e)
 			{
 				e.printStackTrace();
+				return;
 			}
 		
 		for(int i=1;new File(getFolder()+"/"+i+getName().substring(1)).isFile();i++)
@@ -132,6 +135,7 @@ public class ZipSplitter extends NByteSplitter implements SplitterInterface{
 		
 			}catch(IOException e) {
 				e.printStackTrace();
+				return;
 			}
 			
 		}

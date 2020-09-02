@@ -6,6 +6,7 @@ import graphic.*;
 /**
  * 
  * Main in cui creiamo il Frame iniziale e il relativo Pannello
+ * 
  * @author Gamberi Elia
  *
  */

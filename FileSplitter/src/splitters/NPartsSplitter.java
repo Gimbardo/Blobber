@@ -8,7 +8,7 @@ import javax.swing.JProgressBar;
 /**
  * Classe che espande NByteSplitter, e non FileLocation, per consentire di
  * splittare un file dato il numero di file finali
- * Il motivo per questa eredita'  e' per mantenere la funzione join di NByteSplitter, che sarebbe stata
+ * Il motivo per questa eredita'ï¿½ e' per mantenere la funzione join di NByteSplitter, che sarebbe stata
  * identica a quella di di questa classe
  * 
  * @author Gamberi Elia
@@ -94,6 +94,7 @@ public class NPartsSplitter extends NByteSplitter implements SplitterInterface{
 			}catch(Exception e)
 			{
 				e.printStackTrace();
+				return;
 			}
 		
 		
@@ -126,6 +127,7 @@ public class NPartsSplitter extends NByteSplitter implements SplitterInterface{
 		}
 		catch (IOException e){
 			e.printStackTrace();
+			return;
 		}
 		return;
 	}

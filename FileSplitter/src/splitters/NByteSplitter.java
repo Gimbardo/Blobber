@@ -52,7 +52,7 @@ public class NByteSplitter extends FileLocation implements SplitterInterface{
 	}
 	
 	/**
-	 * Metodo che ritorna la quantita'  di byte di grandezza dei file risultanti dallo split, o
+	 * Metodo che ritorna la quantita'ï¿½ di byte di grandezza dei file risultanti dallo split, o
 	 * la grandezza del file che abbiamo preso per il join
 	 * @return N Byte
 	 */
@@ -85,6 +85,7 @@ public class NByteSplitter extends FileLocation implements SplitterInterface{
 			}catch(Exception e)
 			{
 				e.printStackTrace();
+				return;
 			}
 		
 		
@@ -104,6 +105,7 @@ public class NByteSplitter extends FileLocation implements SplitterInterface{
 		}
 		catch (IOException e){
 			e.printStackTrace();
+			return;
 		}
 		return;
 	}
@@ -120,6 +122,7 @@ public class NByteSplitter extends FileLocation implements SplitterInterface{
 		}catch(Exception e)
 		{
 			e.printStackTrace();
+			return;
 		}
 		for(int i=1;new File(getFolder()+"/"+i+getName().substring(1)).isFile();i++)
 		{
@@ -149,6 +152,7 @@ public class NByteSplitter extends FileLocation implements SplitterInterface{
 		
 			}catch(IOException e) {
 				e.printStackTrace();
+				return;
 			}
 			
 		}

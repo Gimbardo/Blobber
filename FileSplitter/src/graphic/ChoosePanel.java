@@ -240,7 +240,7 @@ public class ChoosePanel extends JPanel implements ActionListener{
 					}
 					else
 					{
-						JOptionPane.showMessageDialog(f,"Scegliere una quantita'  di parti maggiore di 1",
+						JOptionPane.showMessageDialog(f,"Scegliere una quantita'ï¿½ di parti maggiore di 1",
 							"Numero di parti non valido",
 						    JOptionPane.ERROR_MESSAGE);
 						return;
@@ -256,8 +256,10 @@ public class ChoosePanel extends JPanel implements ActionListener{
 				try {
 				if(fn.endsWith(".zip.par"))
 					flmom=  new ZipSplitter(fn,name.getText(),progress);
-				else if(fn.endsWith(".crypt.par"))
-					flmom= new CryptSplitter(fn,name.getText(),key.getText(),progress);
+				else if(fn.endsWith(".crypt.par")) {
+					String KeyDecrypt;
+					KeyDecrypt = JOptionPane.showInputDialog("Inserisci la chiave:");
+					flmom= new CryptSplitter(fn,name.getText(),KeyDecrypt,progress);}
 				else if(fn.endsWith(".par"))
 					flmom= new NByteSplitter(fn,name.getText(),progress);
 				else {
