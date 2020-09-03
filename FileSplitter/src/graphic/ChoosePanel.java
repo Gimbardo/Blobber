@@ -2,11 +2,9 @@ package graphic;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -41,7 +39,6 @@ public class ChoosePanel extends JPanel implements ActionListener{
 	
 	private JTextField dim= new JTextField();
 	private JTextField parts= new JTextField();
-	private JTextField key= new JTextField();
 	private JTextField name = new JTextField();
 	
 	private JProgressBar progress;
@@ -67,16 +64,14 @@ public class ChoosePanel extends JPanel implements ActionListener{
 		closeWithButton=false;
 		
 		JRadioButton nbyte=new JRadioButton("NByte");
-		JRadioButton cript=new JRadioButton("Cript");
 		JRadioButton zip=new JRadioButton("Zip");
 		JRadioButton npart=new JRadioButton("NParti");
 		JRadioButton join=new JRadioButton("Join");
 		
 		ButtonGroup grp=new ButtonGroup();
-		grp.add(nbyte);grp.add(cript);grp.add(zip);grp.add(npart);grp.add(join);
+		grp.add(nbyte);;grp.add(zip);grp.add(npart);grp.add(join);
 		
 		nbyte.addActionListener(this);
-		cript.addActionListener(this);
 		zip.addActionListener(this);
 		npart.addActionListener(this);
 		join.addActionListener(this);
@@ -88,7 +83,6 @@ public class ChoosePanel extends JPanel implements ActionListener{
 		
 		dim.setEnabled(false);
 		parts.setEnabled(false);
-		key.setEnabled(false);
 		name.setEnabled(false);
 		
 		cs.fill = GridBagConstraints.HORIZONTAL;
@@ -103,16 +97,9 @@ public class ChoosePanel extends JPanel implements ActionListener{
 		cs.gridx=3;
 		add(new JLabel(" Byte"));
 		
-		cs.gridx=0;
-		cs.gridy=1;
-		add(cript,cs);
-		cs.gridx=1;
-		add(new JLabel("Key: "),cs);
-		cs.gridx=2;
-		add(key,cs);
 		
 		cs.gridx=0;
-		cs.gridy=2;
+		cs.gridy=1;
 		add(npart,cs);
 		cs.gridx=1;
 		add(new JLabel("N° Parti: "),cs);
@@ -121,11 +108,11 @@ public class ChoosePanel extends JPanel implements ActionListener{
 		add(parts,cs);
 		
 		cs.gridx=0;
-		cs.gridy=3;
+		cs.gridy=2;
 		add(zip,cs); 
 		
 		cs.gridx=0;
-		cs.gridy=4;
+		cs.gridy=3;
 		add(join,cs);
 		cs.gridx=1;
 		add(new JLabel("Nome: "),cs);
@@ -133,7 +120,7 @@ public class ChoosePanel extends JPanel implements ActionListener{
 		cs.gridx=2;
 		add(name,cs);
 		
-		cs.gridy=5;
+		cs.gridy=4;
 		add(add,cs);
 		
 		this.fn=fn;
@@ -152,31 +139,21 @@ public class ChoosePanel extends JPanel implements ActionListener{
 		switch(choice) {
 		case "NByte":
 			dim.setEnabled(true);
-			key.setEnabled(false);
-			parts.setEnabled(false);
-			name.setEnabled(false);
-			break;
-		case "Cript":
-			dim.setEnabled(true);
-			key.setEnabled(true);
 			parts.setEnabled(false);
 			name.setEnabled(false);
 			break;
 		case "Zip":
 			dim.setEnabled(true);
-			key.setEnabled(false);
 			parts.setEnabled(false);
 			name.setEnabled(false);
 			break;
 		case "NParti":
 			dim.setEnabled(false);
-			key.setEnabled(false);
 			parts.setEnabled(true);
 			name.setEnabled(false);
 			break;
 		case "Join":
 			dim.setEnabled(false);
-			key.setEnabled(false);
 			parts.setEnabled(false);
 			name.setEnabled(true);
 			break;
@@ -217,15 +194,6 @@ public class ChoosePanel extends JPanel implements ActionListener{
 				else
 					return;
 				break;
-			case "Cript":
-				if(isDimOk()) {
-					flmom= new CryptSplitter(fn,Integer.parseInt(dim.getText()),key.getText(),progress);
-					flmom.setTOD('c');
-					fl.add(flmom);
-				}
-				else
-					return;
-				break;
 			case "Zip":
 				flmom= new ZipSplitter(fn,Integer.parseInt(dim.getText()),progress);
 				flmom.setTOD('z');
@@ -240,7 +208,7 @@ public class ChoosePanel extends JPanel implements ActionListener{
 					}
 					else
 					{
-						JOptionPane.showMessageDialog(f,"Scegliere una quantita'� di parti maggiore di 1",
+						JOptionPane.showMessageDialog(f,"Scegliere una quantita' di parti maggiore di 1",
 							"Numero di parti non valido",
 						    JOptionPane.ERROR_MESSAGE);
 						return;
@@ -256,10 +224,6 @@ public class ChoosePanel extends JPanel implements ActionListener{
 				try {
 				if(fn.endsWith(".zip.par"))
 					flmom=  new ZipSplitter(fn,name.getText(),progress);
-				else if(fn.endsWith(".crypt.par")) {
-					String KeyDecrypt;
-					KeyDecrypt = JOptionPane.showInputDialog("Inserisci la chiave:");
-					flmom= new CryptSplitter(fn,name.getText(),KeyDecrypt,progress);}
 				else if(fn.endsWith(".par"))
 					flmom= new NByteSplitter(fn,name.getText(),progress);
 				else {

@@ -126,7 +126,11 @@ public class FileLocation implements Runnable, SplitterInterface{
 	
 	/**
 	 * TOD : Type of Divisione
-	 * possibili opzioni: 'b','c','z','n' o 'j'
+	 * possibili opzioni: 'b','z','n' o 'j'
+	 * b - NByteSplitter
+	 * z - ZipSplitter
+	 * n - NPartsSplitter
+	 * j - Join
 	 * @return TOD
 	 */
 	public char getTOD()

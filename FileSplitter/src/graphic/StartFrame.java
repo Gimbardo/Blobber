@@ -2,6 +2,11 @@ package graphic;
 
 import javax.swing.JFrame;
 
+/**
+ * Frame iniziale, in cui inseriamo StartPanel
+ * @author gambero
+ *
+ */
 public class StartFrame extends JFrame{
 	/**
 	 * Frame iniziale, creato dal main.
@@ -9,7 +14,7 @@ public class StartFrame extends JFrame{
 	 * i file come "blob", per poterli separare e riunire
 	 * come se fossero fatti di gelatina
 	 * 
-	 * @author Gamberi Elia
+	 * 
 	 */
 	public StartFrame()
 	{

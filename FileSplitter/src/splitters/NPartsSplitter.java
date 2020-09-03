@@ -106,6 +106,7 @@ public class NPartsSplitter extends NByteSplitter implements SplitterInterface{
 			//for che crea NParts-1 elementi
 			for(int i=1;i<NParts+1;i++)
 			{
+				System.out.println("Splitting into" + getFolder()+"/"+i+getName()+".par"+" "+nByteMom+" bytes");
 				fo = new FileOutputStream(getFolder()+"/"+i+getName()+".par"); //salvo tutti i file in una cartella col nome del padre, in ordine di divsione
 				fo.write(moment,0,nByteMom);
 				fo.close();

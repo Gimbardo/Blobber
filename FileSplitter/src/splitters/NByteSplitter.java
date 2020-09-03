@@ -95,7 +95,9 @@ public class NByteSplitter extends FileLocation implements SplitterInterface{
 			int nByteMom = fi.read(moment,0,NByte);
 			while(nByteMom >= 0)
 			{
-				fo = new FileOutputStream(getFolder()+"/"+n+getName()+".par"); //salvo tutti i file in una cartella col nome del padre, in ordine di divsione
+				System.out.println("Splitting into" + getFolder()+"/"+n+getName()+".par"+" "+nByteMom+" bytes");
+				//salvo tutti i file in un file col nome del padre, aggiungendo un numero all'inizio
+				fo = new FileOutputStream(getFolder()+"/"+n+getName()+".par"); 
 				fo.write(moment,0,nByteMom);
 				n++;
 				fo.close();
@@ -126,6 +128,7 @@ public class NByteSplitter extends FileLocation implements SplitterInterface{
 		}
 		for(int i=1;new File(getFolder()+"/"+i+getName().substring(1)).isFile();i++)
 		{
+			
 			try {
 				fi = new FileInputStream(getFolder()+"/"+i+getName().substring(1));
 			} catch (FileNotFoundException e) {
@@ -139,7 +142,7 @@ public class NByteSplitter extends FileLocation implements SplitterInterface{
 			{
 				
 			dim = fi.available();
-			byte[] b= new byte[dim];
+			System.out.println("Joining "+getFolder()+"/"+i+getName().substring(1)+" for "+dim+" bytes");
 			int input;
 			
 			

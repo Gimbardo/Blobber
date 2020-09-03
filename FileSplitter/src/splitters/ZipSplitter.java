@@ -42,7 +42,7 @@ public class ZipSplitter extends NByteSplitter implements SplitterInterface{
 		super(FileLoc,FinalName,progress);
 	}
 	
-	
+	//Livello di compressione che vogliamo dalla nostra compressione
 	private static int ZipLevel = 9;
 	
 	/**
@@ -74,6 +74,8 @@ public class ZipSplitter extends NByteSplitter implements SplitterInterface{
 				String FileRis= getFolder()+"/"+n+getName()+".zip.par";
 				
 				foz = new ZipOutputStream(new FileOutputStream(FileRis)); //salvo tutti i file in una cartella col nome del padre, in ordine di divsione
+				
+				System.out.println("Splitting into" + FileRis+" "+nByteMom+" bytes");
 				
 				foz.setLevel(ZipLevel);
 				
@@ -123,10 +125,12 @@ public class ZipSplitter extends NByteSplitter implements SplitterInterface{
 			}
 			
 			
+			
 			try
 			{
 			fiz.getNextEntry();
 			dim = fiz.available();
+			System.out.println("Joining "+getFolder()+"/"+i+getName().substring(1)+" for "+dim+" bytes");
 			byte[] b= new byte[dim];
 		
 			
