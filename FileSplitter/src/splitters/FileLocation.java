@@ -208,7 +208,7 @@ public class FileLocation implements Runnable, SplitterInterface{
 	protected void newfo() throws Exception
 	{
 		try {
-			fo = new FileOutputStream(getFolder()+"/"+getFinalName());
+			fo = new FileOutputStream(getFolder()+File.separator+getFinalName());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			throw new Exception("File Not Found in join");

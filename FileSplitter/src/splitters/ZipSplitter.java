@@ -71,7 +71,7 @@ public class ZipSplitter extends NByteSplitter implements SplitterInterface{
 			while(nByteMom >= 0)
 			{
 				
-				String FileRis= getFolder()+"/"+n+getName()+".zip.par";
+				String FileRis= getFolder()+File.separator+n+getName()+".zip.par";
 				
 				foz = new ZipOutputStream(new FileOutputStream(FileRis)); //salvo tutti i file in una cartella col nome del padre, in ordine di divsione
 				
@@ -114,10 +114,11 @@ public class ZipSplitter extends NByteSplitter implements SplitterInterface{
 				return;
 			}
 		
-		for(int i=1;new File(getFolder()+"/"+i+getName().substring(1)).isFile();i++)
+		for(int i=1;new File(getFolder()+File.separator+i+getName().substring(1)).isFile();i++)
 		{
+			String FileInput= getFolder()+File.separator+i+getName().substring(1);
 			try {
-				fiz = new ZipInputStream(new FileInputStream(getFolder()+"/"+i+getName().substring(1)));
+				fiz = new ZipInputStream(new FileInputStream(FileInput));
 				
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -130,7 +131,7 @@ public class ZipSplitter extends NByteSplitter implements SplitterInterface{
 			{
 			fiz.getNextEntry();
 			dim = fiz.available();
-			System.out.println("Joining "+getFolder()+"/"+i+getName().substring(1)+" for "+dim+" bytes");
+			System.out.println("Joining "+FileInput+" for "+dim+" bytes");
 			byte[] b= new byte[dim];
 		
 			
