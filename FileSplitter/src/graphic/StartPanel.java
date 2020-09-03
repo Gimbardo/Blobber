@@ -138,6 +138,7 @@ public class StartPanel extends JPanel implements ActionListener{
 					    JOptionPane.ERROR_MESSAGE);
 				return;}
 				filelist.remove(tab.getSelectedRow());
+				progress.setMaximum(filelist.size());
 				TabMod.fireTableDataChanged();
 		}
 	}
