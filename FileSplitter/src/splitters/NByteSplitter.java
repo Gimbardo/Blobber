@@ -140,11 +140,12 @@ public class NByteSplitter extends FileLocation implements SplitterInterface{
 				
 			dim = fi.available();
 			byte[] b= new byte[dim];
-		
+			int input;
 			
-				while(fi.read(b,0,dim)>0)
+			
+				while((input=fi.read())>0)
 				{
-					fo.write(b,0,dim);
+					fo.write(input);
 				}
 			
 			fi.close();

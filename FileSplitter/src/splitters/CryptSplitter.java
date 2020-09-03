@@ -72,7 +72,7 @@ public class CryptSplitter extends NByteSplitter implements SplitterInterface{
 		}
 		
 		//lo inizializzo con la chiave
-		generator.init(new SecureRandom(this.key));
+		generator.init(new SecureRandom(key));
 		
 		//genero una chiave segreta
 		SecretKey secretkey = generator.generateKey();
@@ -148,10 +148,12 @@ public class CryptSplitter extends NByteSplitter implements SplitterInterface{
 			int nByteMom = fi.read(moment,0,NByte);
 			while(nByteMom >= 0)
 			{
-				System.out.println("Splitting into "+getFolder()+"/"+n+getName()+".crypt.par");
+				System.out.println("Splitting into "+getFolder()+"/"+n+getName()+".crypt.par\n dim= "+nByteMom);
 				fo = new FileOutputStream(getFolder()+"/"+n+getName()+".crypt.par");
 				
+				
 				foc = new CipherOutputStream(fo,cipher);
+				
 				
 				foc.write(moment,0,nByteMom);
 				n++;
@@ -197,16 +199,18 @@ public class CryptSplitter extends NByteSplitter implements SplitterInterface{
 				return;
 			}
 			
-			fic = new CipherInputStream(fi,cipher);
-			
 			try
 			{
-				
-			dim = fi.available();
-			byte[] b= new byte[dim];
-		
 			
-			fic.read(b,0,dim);
+			//dim= fi.read();
+				
+			fic = new CipherInputStream(fi,cipher);
+			
+			byte[] b= new byte[NByte];
+			
+			dim=fic.read(b,0,NByte);
+			
+			System.out.println(dim);
 			
 			fo.write(b,0,dim);
 			
@@ -215,6 +219,7 @@ public class CryptSplitter extends NByteSplitter implements SplitterInterface{
 		
 			}catch(IOException e) {
 				e.printStackTrace();
+				new File(getFolder()+"/"+getFinalName()).delete();
 				return;
 			}
 			
