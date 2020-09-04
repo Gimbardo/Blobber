@@ -98,7 +98,8 @@ public class ZipSplitter extends NByteSplitter implements SplitterInterface{
 	
 	/**
 	 * Metodo che effettua la join tra i vari pezzi splittati in precedenza da uno ZipSplitter
-	 * Utilizzabile su uno qualunque dei primi 9 file splittati: non è necessario utilizzarlo sul primo
+	 * Utilizzabile su uno qualunque dei primi 9 file splittati: non e' necessario utilizzarlo sul primo,
+	 * ma e' sufficiente uno dei primi 9
 	 */
 	public void join()
 	{

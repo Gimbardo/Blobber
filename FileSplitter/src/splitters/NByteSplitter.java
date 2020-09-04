@@ -113,7 +113,8 @@ public class NByteSplitter extends FileLocation implements SplitterInterface{
 	}
 	/**
 	 * Metodo che effettua il join tra i vari pezzi splittati in precedenza da un NByteSplitter
-	 * Utilizzabile su uno qualunque dei file splittati: non e' necessario utilizzarlo sul primo
+	 * Utilizzabile su uno qualunque dei file splittati: non e' necessario utilizzarlo sul primo,
+	 * ma e' sufficiente su uno dei primi 9
 	 */
 	public void join()
 	{
@@ -147,12 +148,12 @@ public class NByteSplitter extends FileLocation implements SplitterInterface{
 				
 			dim = fi.available();
 			System.out.println("Joining "+FileInput+" for "+dim+" bytes");
-			int input;
 			
+			byte[] b = new byte[dim];
 			
-				while((input=fi.read())>0)
+				if(fi.read(b,0,dim)>=0)
 				{
-					fo.write(input);
+					fo.write(b,0,dim);
 				}
 			
 			fi.close();

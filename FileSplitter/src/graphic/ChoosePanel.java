@@ -45,7 +45,7 @@ public class ChoosePanel extends JPanel implements ActionListener{
 	/**
 	 * Costruttore iniziale del pannello di scelta del tipo di divisione
 	 * @param l lista di oggetti "FileLocation", che diventano uno dei figli in base alle nostre scelte
-	 * @param f Frame in cui è contenuto il JPanel
+	 * @param f Frame in cui e' contenuto il JPanel
 	 * @param TabMod Modello della Tabella contenuto nel Frame iniziale
 	 * @param fn Stringa contenente il path del file che abbiamo appena scelto
 	 * @param progress JprogressBar, da passare agli splitter per aggiornarla alla fine della funzione run()
@@ -104,7 +104,7 @@ public class ChoosePanel extends JPanel implements ActionListener{
 		cs.gridy=1;
 		add(npart,cs);
 		cs.gridx=1;
-		add(new JLabel("N° Parti: "),cs);
+		add(new JLabel("N Parti: "),cs);
 		cs.gridx=2;
 		
 		add(parts,cs);
