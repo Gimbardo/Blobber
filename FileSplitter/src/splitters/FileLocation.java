@@ -129,6 +129,7 @@ public class FileLocation implements Runnable, SplitterInterface{
 	 * possibili opzioni: 'b','z','n' o 'j'
 	 * b - NByteSplitter
 	 * z - ZipSplitter
+	 * c - CryptoSplitter
 	 * n - NPartsSplitter
 	 * j - Join
 	 * @return TOD

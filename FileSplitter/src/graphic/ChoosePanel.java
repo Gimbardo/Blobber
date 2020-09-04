@@ -65,14 +65,16 @@ public class ChoosePanel extends JPanel implements ActionListener{
 		
 		JRadioButton nbyte=new JRadioButton("NByte");
 		JRadioButton zip=new JRadioButton("Zip");
+		JRadioButton crypt=new JRadioButton("Crypt");
 		JRadioButton npart=new JRadioButton("NParti");
 		JRadioButton join=new JRadioButton("Join");
 		
 		ButtonGroup grp=new ButtonGroup();
-		grp.add(nbyte);;grp.add(zip);grp.add(npart);grp.add(join);
+		grp.add(nbyte);;grp.add(zip);grp.add(crypt);grp.add(npart);grp.add(join);
 		
 		nbyte.addActionListener(this);
 		zip.addActionListener(this);
+		crypt.addActionListener(this);
 		npart.addActionListener(this);
 		join.addActionListener(this);
 
@@ -111,8 +113,11 @@ public class ChoosePanel extends JPanel implements ActionListener{
 		cs.gridy=2;
 		add(zip,cs); 
 		
-		cs.gridx=0;
 		cs.gridy=3;
+		add(crypt,cs);
+		
+		cs.gridx=0;
+		cs.gridy=4;
 		add(join,cs);
 		cs.gridx=1;
 		add(new JLabel("Nome: "),cs);
@@ -120,7 +125,7 @@ public class ChoosePanel extends JPanel implements ActionListener{
 		cs.gridx=2;
 		add(name,cs);
 		
-		cs.gridy=4;
+		cs.gridy=5;
 		add(add,cs);
 		
 		this.fn=fn;
@@ -143,6 +148,11 @@ public class ChoosePanel extends JPanel implements ActionListener{
 			name.setEnabled(false);
 			break;
 		case "Zip":
+			dim.setEnabled(true);
+			parts.setEnabled(false);
+			name.setEnabled(false);
+			break;
+		case "Crypt":
 			dim.setEnabled(true);
 			parts.setEnabled(false);
 			name.setEnabled(false);
@@ -194,6 +204,11 @@ public class ChoosePanel extends JPanel implements ActionListener{
 				else
 					return;
 				break;
+			case "Crypt":
+				flmom= new CryptoSplitter(fn,Integer.parseInt(dim.getText()),progress);
+				flmom.setTOD('c');
+				fl.add(flmom);
+				break;
 			case "Zip":
 				flmom= new ZipSplitter(fn,Integer.parseInt(dim.getText()),progress);
 				flmom.setTOD('z');
@@ -224,6 +239,8 @@ public class ChoosePanel extends JPanel implements ActionListener{
 				try {
 				if(fn.endsWith(".zip.par"))
 					flmom=  new ZipSplitter(fn,name.getText(),progress);
+				else if(fn.endsWith(".crypt.par"))
+					flmom= new CryptoSplitter(fn,name.getText(),progress);
 				else if(fn.endsWith(".par"))
 					flmom= new NByteSplitter(fn,name.getText(),progress);
 				else {

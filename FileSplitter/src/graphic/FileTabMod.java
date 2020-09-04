@@ -74,6 +74,8 @@ public class FileTabMod extends DefaultTableModel{
 			switch(l.get(row).getTOD()) {
 			case 'b':
 				return "NByte";
+			case 'c':
+				return "Crypted";
 			case 'z':
 				return "Zipped";
 			case 'n':
